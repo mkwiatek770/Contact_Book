@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Contact informations</h1>
+<p>Name: {{ person.name }}</p>
+<p>Surname: {{ person.surname }}</p>
+<h3>Phone number/numbers: </h3>
+{% for phone in phones %}
+<ul>
+    <li>Number: {{ phone.number }}</li>
+    <p>Phone Type: {{ phone.get_phone_type_display }}</p>
+</ul>
+{% endfor %}
+<h3>Email adress/adresses: </h3>
+{% for email in emails %}
+<ul>
+    <li>Adress: {{ email.adress }}</li>
+    <li>Email Type: {{ email.get_email_type_display }}</li>
+</ul>
+{% endfor %}
+<h3>Groups</h3>
+{% for group in person_groups %}
+<ul>
+    <li>{{ group.name }}</li>
+</ul>
+{% endfor %}
+
+<h3><a href="{% url 'modify' person.id %}">Edit profile</a></h3>
+{% endblock %}

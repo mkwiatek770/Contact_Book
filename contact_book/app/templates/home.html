@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Witaj na stronie głównej</h1>
+<h2>Lista kontaktów</h2>
+<ul>
+    {% for person in people %}
+    <li>
+        <h2><a href="{% url 'show' person.id %}">{{ person.name }} {{ person.surname }}</a></h2>
+        <a href="{% url 'modify' person.id %}">Edit</a>
+        <a href="{% url 'delete_person' person.id %}">Delete</a>
+    </li>
+    <br>
+    {% endfor %}
+</ul>
+{% endblock %}

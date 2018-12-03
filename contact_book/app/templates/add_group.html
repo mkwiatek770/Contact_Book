@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>{{ msg }}</p>
+<h1>Add group</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="">Group Name: </label>
+    <input type="text" name='name'>
+    <input type="submit" value="Add Group">
+</form>
+{% endblock %}

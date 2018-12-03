@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>{{ msg }}</p>
+<h1>Groups</h1>
+<ul>
+    {% for group in groups %}
+    <li>
+        <h2><a href="{% url 'group_info' group.id %}">{{ group.name }}</a></h2>
+        <a href="{% url 'delete_group' group.id %}">Remove</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

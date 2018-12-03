@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+    <p>{{ msg }}</p>
+    <h1>Modify contact</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        <label for="">Name</label>
+        <input type="text" name="name" value="{{ person.name }}">
+        <br>
+        <label for="">Surname</label>
+        <input type="text" name="surname" value="{{ person.surname }}">
+        <input type="submit" name="modify" value="Update">
+    </form>
+    <br>
+    <h2>Phone(s)</h2>
+    <br>
+    {% for phone in phones %}
+    <p>{{ phone.number }} - {{ phone.get_phone_type_display }}</p>
+    <p><a href="{% url 'delete_phone' person.id phone.id %}">Delete phone number</a></p>
+    <br>
+    {% endfor %}
+    <h2>Email(s)</h2>
+    <br>
+    {% for email in emails %}
+    <p>{{ email.adress }} - {{ email.get_email_type_display }}</p>
+    <p><a href="{% url 'delete_email' person.id email.id %}">Delete email adress</a></p>
+    <br>
+    {% endfor %}
+    <h2>Group(s)</h2>
+    {% for group in person_groups %}
+    <p>{{ group.name }}</p>
+    <p><a href="{% url 'delete_person_group' person.id group.id %}">Delete group</a></p>
+    {% endfor %}
+
+
+    <br><br><br>
+
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Add new group</h2>
+        <label for="">Group name: </label>
+        <select name="new_group">
+            <option value="None" selected></option>
+            {% for group in groups %}
+            <option value="{{ group.id }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" name="modify" value="Add group">
+    </form>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Add new phone</h2>
+        <label for="">Number</label>
+        <input type="text" name="add_number" pattern="\d{9}|\d{3} \d{3} \d{3}">
+        <label for="">Type</label>
+        <select name="number_type">
+            <option value="None" selected></option>
+            {% for type in types %}
+            <option value="{{ type.0 }}">{{ type.1 }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" name="modify" value="Add Phone">
+    </form>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Add new email adress</h2>
+        <label for="">Email adress:</label>
+        <input type="email" name="add_email">
+        <label for="">Type</label>
+        <select name="email_type">
+            <option value="None" selected></option>
+            {% for type in types %}
+            <option value="{{ type.0 }}">{{ type.1 }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" name="modify" value="Add Email">
+    </form>
+</div>
+{% endblock %}
