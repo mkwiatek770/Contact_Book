@@ -1,6 +1,11 @@
 # Contact_Book
 This project is a place where user can store his contacts.
 
+## Technology Stack
+* Python
+* Django
+* Bootstrap4
+
 ## Instalation
 * clone repository from github using: git clone (adress)
 * set up virtualenv (python 3 required!)
@@ -31,11 +36,5 @@ To get access to admin page in your console type:
 after creating admin user you will be able to have access to admin site on:
 localhost:8000/admin 
 There you can manually work with database tables.
-
-## Contributing
-Comments and pull requests are welcome.
-
-## Author
-* Michał Kwiatek contact: michalkwiatek9@o2.pl
 
 
